@@ -1,0 +1,22 @@
+{
+  "name": "mern_memories_app",
+  "version": "1.0.0",
+  "description": "MERN ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsvGithub/MERN_Memories_App.git"
+  },
+  "keywords": [
+    "MERN"
+  ],
+  "author": "tsv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsvGithub/MERN_Memories_App/issues"
+  },
+  "homepage": "https://github.com/tsvGithub/MERN_Memories_App#readme"
+}
