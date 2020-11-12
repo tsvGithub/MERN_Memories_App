@@ -1,15 +1,25 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const cors = require("cors");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
 
 const app = express();
+
+// const postRoutes = require("./routes/posts");
+import postRoutes from "./routes/posts.js";
+app.use("/posts", postRoutes);
+
 app.use(cors());
 app.use(express.json());
 //limit files size:
 // app.use(express.json({ limit: "30mb", extended: true }));
 // app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
-require("dotenv").config();
+// require("dotenv").config();
+dotenv.config();
 // console.log(process.env.CONNECTION_URL);
 
 //===================================
