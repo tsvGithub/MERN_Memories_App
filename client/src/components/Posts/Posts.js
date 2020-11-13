@@ -8,7 +8,7 @@ function Posts() {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
 
-  console.log(posts);
+  // console.log(posts);
   return (
     <div>
       <h1>Posts</h1>
