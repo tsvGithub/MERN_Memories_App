@@ -4,8 +4,7 @@ const url = "http://localhost:5000/posts";
 //api calls:
 //all posts from db
 export const fetchPosts = () => axios.get(url);
-
-// export const createPost = (newPost) => axios.post(url, newPost);
+export const createPost = (newPost) => axios.post(url, newPost);
 
 // export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
 

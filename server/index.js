@@ -4,15 +4,19 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
 
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+//Didn't work with error 413 (payload too large) with usin express.json({limit...}) => use BodyParser!
+// app.use(express.json());
 //limit files size:
-// app.use(express.json({ limit: "30mb", extended: true }));
-// app.use(express.urlencoded({ limit: "30mb", extended: true }));
+// app.use(express.json({ limit: "50mb", extended: true }));
+// app.use(express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 //--------------------------------------
 // const postRoutes = require("./routes/posts");
 import postRoutes from "./routes/posts.js";
