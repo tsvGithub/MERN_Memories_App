@@ -1,57 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-
-// import FileBase from "react-file-base64";
 import FileBase from "react-file-base64";
-import { createPost, updatePost, getPosts } from "../../actions/posts";
 
 import useStyles from "./styles";
+import { createPost, updatePost } from "../../actions/posts";
 
-function Form({ currentId, setCurrentId }) {
-  const classes = useStyles();
-  //-----------------------------
-  const [postData, setPostData] = useState({
-    creator: "",
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
-  });
-  const formValue = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
-  // const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
+const Form = ({ currentId, setCurrentId }) => {
+  const [postData, setPostData] = useState({ creator: "", title: "", message: "", tags: "", selectedFile: "" });
+  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
+  const classes = useStyles();
 
-  //Populates value in the Form
   useEffect(() => {
-    if (formValue) setPostData(formValue);
-  }, [formValue]);
+    if (post) setPostData(post);
+  }, [post]);
 
   const clear = () => {
     setCurrentId(0);
     setPostData({ creator: "", title: "", message: "", tags: "", selectedFile: "" });
   };
 
-  const handleSubmit = (e) => {
-    // debugger;
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
-      // dispatch(getPosts());
-    } else {
+    if (currentId === 0) {
       dispatch(createPost(postData));
+      clear();
+    } else {
+      dispatch(updatePost(currentId, postData));
+      clear();
     }
-    clear();
   };
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [dispatch]);
 
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">{currentId ? `Editing "${formValue.title}"` : "Creating a Memory"}</Typography>
+        <Typography variant="h6">{currentId ? `Editing "${post.title}"` : "Creating a Memory"}</Typography>
         <TextField
           name="creator"
           variant="outlined"
@@ -109,6 +94,6 @@ function Form({ currentId, setCurrentId }) {
       </form>
     </Paper>
   );
-}
+};
 
 export default Form;

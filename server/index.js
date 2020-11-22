@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 
-//Didn't work with error 413 (payload too large) with usin express.json({limit...}) => use BodyParser!
+//express.json({limit...}) doesn't work with error 413 (payload too large) => use BodyParser instead!
 // app.use(express.json());
 //limit files size:
 // app.use(express.json({ limit: "50mb", extended: true }));
