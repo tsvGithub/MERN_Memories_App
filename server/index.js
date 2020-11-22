@@ -10,8 +10,9 @@ import dotenv from "dotenv";
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+
 //Didn't work with error 413 (payload too large) with usin express.json({limit...}) => use BodyParser!
 // app.use(express.json());
 //limit files size:
